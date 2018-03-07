@@ -41,6 +41,7 @@ from libs.toolBar import ToolBar
 from libs.ustr import ustr
 from libs.version import __version__
 from libs.zoomWidget import ZoomWidget
+import lmdb
 
 __appname__ = 'vanno'
 server_path = "../vanno_server/env/"
@@ -270,12 +271,15 @@ class MainWindow(QMainWindow, WindowMixin):
                     insort(self.verJobList, line)
             file.close()
 
-        file = QFile(server_path + dataset + '/' + self.logged_id + '.txt')
-        if file.open(QFile.ReadOnly | QFile.Text):
-            while not file.atEnd():
-                line = bytearray(file.readLine()).decode().strip()
-                insort(self.checkList, line)
-        file.close()
+        # file = QFile(server_path + dataset + '/' + self.logged_id + '.txt')
+        # if file.open(QFile.ReadOnly | QFile.Text):
+        #     while not file.atEnd():
+        #         line = bytearray(file.readLine()).decode().strip()
+        #         insort(self.checkList, line)
+        # file.close()
+
+
+
 
         # Actions
         action = partial(newAction, self)
@@ -750,13 +754,19 @@ class MainWindow(QMainWindow, WindowMixin):
     ###
     def diritemChanged(self, item=None):
         # QMessageBox.warning(self, u'changed', msg, yes | no)
-        self.savebtn_label.setText('Not saved')
-        self.savebtn_label.setStyleSheet('color: red')
-        if item.text() in self.checkList:
-            self.checkList.remove(item.text())
-        else:
-            insort(self.checkList, item.text())
-        self.savebtncnt_label.setText('{0}/{1}'.format(len(self.checkList), self.foldercnt))
+        # self.savebtn_label.setText('Not saved')
+        # self.savebtn_label.setStyleSheet('color: red')
+        # if item.text() in self.checkList:
+        #     self.checkList.remove(item.text())
+        # else:
+        #     insort(self.checkList, item.text())
+        # self.savebtncnt_label.setText('{0}/{1}'.format(len(self.checkList), self.foldercnt))
+
+        with self.lmdb.begin(write=True) as txn:
+            flag=txn.put(item.text().encode('ascii'),"1".encode('ascii'),overwrite=False)
+            if not flag:
+                QMessageBox.warning(self, u'Duplicate', "Already checked")
+            print("put: ",flag)
 
 
     ###
@@ -1312,6 +1322,7 @@ class MainWindow(QMainWindow, WindowMixin):
 
     def importJobs(self, envpath):
         envpath = server_path + envpath.split("/")[-1]
+        self.lmdb=lmdb.open(os.path.join(envpath,self.logged_id))
         return json.load(open(os.path.join(envpath,"job_assign.json")))
 
 
@@ -1332,6 +1343,11 @@ class MainWindow(QMainWindow, WindowMixin):
         # job_list = [k for j in job_list for k in j]
         # print(job_list)
         job_list = self.verJobList
+
+        with self.lmdb.begin() as txn:
+            cursor = txn.cursor()
+            for key, value in cursor:
+                print(key.decode('ascii'), value.decode('ascii'))
 
         self.folderListWidget.clear()
         self.mDirList = self.scanAllDirs(dirpath)
