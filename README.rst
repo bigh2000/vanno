@@ -28,17 +28,21 @@ Python 3 + Qt5
 
 connect_server.sh for vdo_data*
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-#!/bin/sh
-sudo umount -f ~/Desktop/server
-sudo sshfs -o allow_other vdo-server@192.168.0.142:/home/vdo-server/Annotation ~/Desktop/server
-cd ~/Desktop/server/vanno
-python3 vanno.py
+.. code::
+
+    #!/bin/sh
+    sudo umount -f ~/Desktop/server
+    sudo sshfs -o allow_other vdo-server@192.168.0.142:/home/vdo-server/Annotation ~/Desktop/server
+    cd ~/Desktop/server/vanno
+    python3 vanno.py
 
 
 connect_server.sh for vdo_ver
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-#!/bin/sh
-sudo umount -f ~/Desktop/server
-sudo sshfs -o allow_other vdo-server@192.168.0.142:/home/vdo-server/Annotation ~/Desktop/server
-cd ~/Desktop/server/vanno
-python3 vanno_ver.py
+.. code::
+
+    #!/bin/sh
+    sudo umount -f ~/Desktop/server
+    sudo sshfs -o allow_other vdo-server@192.168.0.142:/home/vdo-server/Annotation ~/Desktop/server
+    cd ~/Desktop/server/vanno
+    python3 vanno_ver.py
