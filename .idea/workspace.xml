@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b5ed2b8a-2a1b-4398-874e-4ddd78cd315e" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.rst" afterPath="$PROJECT_DIR$/README.rst" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanno_ver.py" afterPath="$PROJECT_DIR$/vanno_ver.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,8 +35,8 @@
       <file leaf-file-name="vanno_ver.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vanno_ver.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="572">
-              <caret line="1364" column="52" lean-forward="true" selection-start-line="1364" selection-start-column="52" selection-end-line="1364" selection-end-column="52" />
+            <state relative-caret-position="297">
+              <caret line="766" column="32" lean-forward="true" selection-start-line="766" selection-start-column="32" selection-end-line="766" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -52,36 +53,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>filedock</find>
-      <find>fileListWidget</find>
-      <find>scanAllImages</find>
-      <find>mImgList</find>
-      <find>fileitemDoubleClicked</find>
-      <find>diritem</find>
-      <find>join</find>
-      <find>image</find>
-      <find>dirname</find>
-      <find>last</find>
-      <find>importDirImages</find>
-      <find>savedir</find>
-      <find>changeSavedirDialog</find>
-      <find>defaultsave</find>
-      <find>doubleclick</find>
-      <find>save</find>
-      <find>saveFile</find>
-      <find>defaultSaveDir</find>
-      <find>double</find>
-      <find>setFoc</find>
-      <find>EDIT</find>
-      <find>EDIT D</find>
       <find>Open Dir'</find>
       <find>openDirDialog</find>
       <find>folderListWidget</find>
       <find>diritemDoubleClicked</find>
       <find>opendir</find>
       <find>self.lm</find>
-      <find>self.lmdb</find>
       <find>doublecli</find>
+      <find>impo</find>
+      <find>self.lmdb</find>
+      <find>importdir</find>
+      <find>changed</find>
+      <find>cursor</find>
+      <find>cursor(</find>
+      <find>lmdb</find>
+      <find>.cursor</find>
+      <find>.put</find>
+      <find>txn</find>
+      <find>self.checklist</find>
+      <find>#####</find>
+      <find>count()</find>
+      <find>diritemChanged</find>
+      <find>txn.</find>
+      <find>itemchanged</find>
+      <find>diritemchanged</find>
+      <find>checklist</find>
+      <find>self.checkList</find>
+      <find>checknum</find>
+      <find>savebutton</find>
+      <find>savebtn_label</find>
+      <find>savebtncnt_label</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -93,6 +94,7 @@
         <option value="$PROJECT_DIR$/libs/loginDialog.py" />
         <option value="$PROJECT_DIR$/labelImg.py" />
         <option value="$PROJECT_DIR$/vanno.py" />
+        <option value="$PROJECT_DIR$/vanno_ver.py" />
       </list>
     </option>
   </component>
@@ -386,7 +388,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="2495" height="1056" extended-state="7" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2645978" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -394,11 +396,11 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32881" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32881" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39959225" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39874738" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -416,7 +418,19 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+      <option name="time" value="3" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -566,8 +580,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vanno_ver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="1364" column="52" lean-forward="true" selection-start-line="1364" selection-start-column="52" selection-end-line="1364" selection-end-column="52" />
+        <state relative-caret-position="297">
+          <caret line="766" column="32" lean-forward="true" selection-start-line="766" selection-start-column="32" selection-end-line="766" selection-end-column="32" />
           <folding />
         </state>
       </provider>

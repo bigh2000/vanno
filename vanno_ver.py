@@ -152,10 +152,10 @@ class MainWindow(QMainWindow, WindowMixin):
         self.editButton = QToolButton()
         self.editButton.setToolButtonStyle(Qt.ToolButtonTextBesideIcon)
 
-        self.saveButton = QToolButton()
-        self.saveButton.setToolButtonStyle(Qt.ToolButtonTextBesideIcon)
-        self.saveButton.setText("Save checking")
-        self.saveButton.clicked.connect(self.saveButtonClicked)
+        # self.saveButton = QToolButton()
+        # self.saveButton.setToolButtonStyle(Qt.ToolButtonTextBesideIcon)
+        # self.saveButton.setText("Save checking")
+        # self.saveButton.clicked.connect(self.saveButtonClicked)
 
         self.edit_label = QLabel()
         self.save_label = QLabel()
@@ -192,13 +192,13 @@ class MainWindow(QMainWindow, WindowMixin):
 
         folderlistLayout = QVBoxLayout()
         folderlistLayout.setContentsMargins(0, 0, 0, 0)
-        folderlistLayout.addWidget(self.saveButton)
+        # folderlistLayout.addWidget(self.saveButton)
 
         ###
         self.savebtncnt_label = QLabel()
         folderlistLayout.addWidget(self.savebtncnt_label)
-        self.savebtn_label = QLabel()
-        folderlistLayout.addWidget(self.savebtn_label)
+        # self.savebtn_label = QLabel()
+        # folderlistLayout.addWidget(self.savebtn_label)
 
         folderlistLayout.addWidget(self.folderListWidget)
         folderListContainer = QWidget()
@@ -762,22 +762,28 @@ class MainWindow(QMainWindow, WindowMixin):
         #     insort(self.checkList, item.text())
         # self.savebtncnt_label.setText('{0}/{1}'.format(len(self.checkList), self.foldercnt))
 
+        ###
         with self.lmdb.begin(write=True) as txn:
-            flag=txn.put(item.text().encode('ascii'),"1".encode('ascii'),overwrite=False)
-            if not flag:
-                QMessageBox.warning(self, u'Duplicate', "Already checked")
+            flag = txn.put(item.text().encode('ascii'), "1".encode('ascii'), overwrite=False)
+            if flag:
+                self.checknum += 1
+            else:
+                # QMessageBox.warning(self, u'Duplicate', "Already checked")
+                txn.delete(item.text().encode('ascii'))
+                self.checknum -= 1
             print("put: ",flag)
+            self.savebtncnt_label.setText('{0}/{1}'.format(self.checknum, self.foldercnt))
 
 
     ###
-    def saveButtonClicked(self):
-        self.savebtn_label.setText('')
-        file = QFile(server_path + dataset + '/'+ self.logged_id + '.txt')
-        if file.open(QFile.WriteOnly | QFile.Text):
-            for check in self.checkList:
-                file.write(bytearray(check + '\n', 'utf8'))
-        file.close()
-        print('saved')
+    # def saveButtonClicked(self):
+    #     self.savebtn_label.setText('')
+    #     file = QFile(server_path + dataset + '/'+ self.logged_id + '.txt')
+    #     if file.open(QFile.WriteOnly | QFile.Text):
+    #         for check in self.checkList:
+    #             file.write(bytearray(check + '\n', 'utf8'))
+    #     file.close()
+    #     print('saved')
 
 
     # Add chris
@@ -1347,7 +1353,9 @@ class MainWindow(QMainWindow, WindowMixin):
         with self.lmdb.begin() as txn:
             cursor = txn.cursor()
             for key, value in cursor:
-                print(key.decode('ascii'), value.decode('ascii'))
+                # print(key.decode('ascii'), value.decode('ascii'))
+                insort(self.checkList, key.decode('ascii'))
+            self.checknum = len(self.checkList)
 
         self.folderListWidget.clear()
         self.mDirList = self.scanAllDirs(dirpath)
