@@ -43,7 +43,7 @@ from libs.version import __version__
 from libs.zoomWidget import ZoomWidget
 import lmdb
 
-__appname__ = 'vanno'
+__appname__ = 'vanno_ver'
 server_path = "../vanno_server/env/"
 dataset = 'jester'
 

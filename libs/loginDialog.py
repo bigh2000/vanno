@@ -1,3 +1,5 @@
+import sys
+
 try:
     from PyQt5.QtGui import *
     from PyQt5.QtCore import *
@@ -31,16 +33,18 @@ class Login(QDialog):
 
 
     def handleLogin(self):
-
-        if self.textPass.text() in self.ids:
-
-            self.logged_id = self.textPass.text()
-
-            self.accept()
-
-        else:
-            QMessageBox.warning(
-                self, 'Error', 'Bad user')
+        if sys.argv[0].split('/')[-1] == 'vanno.py':
+            if self.textPass.text() in self.ids:
+                self.logged_id = self.textPass.text()
+                self.accept()
+            else:
+                QMessageBox.warning(self, 'Error', 'Bad user')
+        elif sys.argv[0].split('/')[-1] == 'vanno_ver.py':
+            if self.textPass.text() == 'vdo_ver':
+                self.logged_id = 'vdo_ver'
+                self.accept()
+            else:
+                QMessageBox.warning(self, 'Error', 'Bad user')
 
 class Window(QMainWindow):
     def __init__(self, parent=None):

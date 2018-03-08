@@ -1,4 +1,3 @@
 vdo_data1
 vdo_data2
 vdo_data3
-vdo_ver
