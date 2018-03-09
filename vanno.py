@@ -44,7 +44,7 @@ from libs.version import __version__
 from libs.zoomWidget import ZoomWidget
 
 __appname__ = 'vanno'
-server_path = "../vanno_server/env/"
+env_path = "./env/"
 dataset = 'jester'
 
 # Utility functions and classes.
@@ -540,7 +540,6 @@ class MainWindow(QMainWindow, WindowMixin):
         if self.filePath and os.path.isdir(self.filePath):
             self.openDirDialog(dirpath=self.filePath)
 
-
         self.save_label.setText("Save DIR: " + self.defaultSaveDir)
 
 
@@ -764,12 +763,12 @@ class MainWindow(QMainWindow, WindowMixin):
     ###
     def saveButtonClicked(self):
         self.savebtn_label.setText('')
-        file = QFile(server_path + dataset + '/'+ self.logged_id + '_' + self.curSession + '.txt')
+        file = QFile(env_path + dataset + '/'+ self.logged_id + '_' + self.curSession + '.txt')
         if file.open(QFile.WriteOnly | QFile.Text):
             for check in self.checkList:
                 file.write(bytearray(check + '\n', 'utf8'))
         file.close()
-        file = QFile(server_path + dataset + '/' + 'Statistics.txt')
+        file = QFile(env_path + dataset + '/' + 'Statistics.txt')
         if file.open(QFile.Append | QFile.Text):
             file.write(bytearray(self.logged_id + '_' + self.curSession + ', ' + str(datetime.datetime.now()) + '\n', 'utf8'))
         file.close()
@@ -1342,7 +1341,7 @@ class MainWindow(QMainWindow, WindowMixin):
 
 
     def importJobs(self, envpath):
-        envpath = server_path + envpath.split("/")[-1]
+        envpath = env_path + envpath.split("/")[-1]
         return json.load(open(os.path.join(envpath,"job_assign.json")))
 
 
@@ -1363,7 +1362,7 @@ class MainWindow(QMainWindow, WindowMixin):
         self.checkList = []
         self.foldercnt = 0
 
-        file = QFile(server_path + dataset + '/' + self.logged_id + '_' + self.curSession + '.txt')
+        file = QFile(env_path + dataset + '/' + self.logged_id + '_' + self.curSession + '.txt')
         if file.open(QFile.ReadOnly | QFile.Text):
             while not file.atEnd():
                 line = bytearray(file.readLine()).decode().strip()

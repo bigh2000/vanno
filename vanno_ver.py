@@ -44,7 +44,7 @@ from libs.zoomWidget import ZoomWidget
 import lmdb
 
 __appname__ = 'vanno_ver'
-server_path = "../vanno_server/env/"
+env_path = "../vanno_server/env/"
 dataset = 'jester'
 
 # Utility functions and classes.
@@ -256,7 +256,7 @@ class MainWindow(QMainWindow, WindowMixin):
         self.foldercnt = 0
         self.checkList = []
         self.verJobList = []
-        file = QFile(server_path + '../ids.txt')
+        file = QFile(env_path + '../ids.txt')
         if file.open(QFile.ReadOnly | QFile.Text):
             while not file.atEnd():
                 line = bytearray(file.readLine()).decode().strip()
@@ -264,14 +264,14 @@ class MainWindow(QMainWindow, WindowMixin):
         file.close()
 
         for id in self.ids:
-            file = QFile(server_path + dataset + '/' + id + '.txt')
+            file = QFile(env_path + dataset + '/' + id + '.txt')
             if file.open(QFile.ReadOnly | QFile.Text):
                 while not file.atEnd():
                     line = bytearray(file.readLine()).decode().strip()
                     insort(self.verJobList, line)
             file.close()
 
-        # file = QFile(server_path + dataset + '/' + self.logged_id + '.txt')
+        # file = QFile(env_path + dataset + '/' + self.logged_id + '.txt')
         # if file.open(QFile.ReadOnly | QFile.Text):
         #     while not file.atEnd():
         #         line = bytearray(file.readLine()).decode().strip()
@@ -778,7 +778,7 @@ class MainWindow(QMainWindow, WindowMixin):
     ###
     # def saveButtonClicked(self):
     #     self.savebtn_label.setText('')
-    #     file = QFile(server_path + dataset + '/'+ self.logged_id + '.txt')
+    #     file = QFile(env_path + dataset + '/'+ self.logged_id + '.txt')
     #     if file.open(QFile.WriteOnly | QFile.Text):
     #         for check in self.checkList:
     #             file.write(bytearray(check + '\n', 'utf8'))
@@ -1327,7 +1327,7 @@ class MainWindow(QMainWindow, WindowMixin):
 
 
     def importJobs(self, envpath):
-        envpath = server_path + envpath.split("/")[-1]
+        envpath = env_path + envpath.split("/")[-1]
         self.lmdb=lmdb.open(os.path.join(envpath,self.logged_id))
         return json.load(open(os.path.join(envpath,"job_assign.json")))
 

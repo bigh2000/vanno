@@ -1,0 +1,3 @@
+hand
+hand_blurred
+hand_occluded
