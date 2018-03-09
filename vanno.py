@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import codecs
+import datetime
 import json
 import os.path
 import re
@@ -182,6 +183,16 @@ class MainWindow(QMainWindow, WindowMixin):
         self.curSessLineEdit = QLineEdit()
         self.curSessLineEdit.setFixedWidth(40);
         listLayout.addWidget(self.curSessLineEdit)
+
+        # prevSessBtn = QToolButton()
+        # prevSessBtn.setArrowType(Qt.LeftArrow)
+        # listLayout.addWidget(prevSessBtn)
+        # # prevSessBtn.clicked.connect()
+        # nextSessBtn = QToolButton()
+        # nextSessBtn.setArrowType(Qt.RightArrow)
+        # listLayout.addWidget(nextSessBtn)
+        # # nextSessBtn.clicked.connect()
+
         self.openDirButton = QToolButton()
         self.openDirButton.setText('Open Dir')
         listLayout.addWidget(self.openDirButton)
@@ -757,6 +768,10 @@ class MainWindow(QMainWindow, WindowMixin):
         if file.open(QFile.WriteOnly | QFile.Text):
             for check in self.checkList:
                 file.write(bytearray(check + '\n', 'utf8'))
+        file.close()
+        file = QFile(server_path + dataset + '/' + 'Statistics.txt')
+        if file.open(QFile.Append | QFile.Text):
+            file.write(bytearray(self.logged_id + '_' + self.curSession + ', ' + str(datetime.datetime.now()) + '\n', 'utf8'))
         file.close()
         print('saved')
 
