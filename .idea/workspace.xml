@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b5ed2b8a-2a1b-4398-874e-4ddd78cd315e" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanno.py" afterPath="$PROJECT_DIR$/vanno.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,11 +25,9 @@
       <file leaf-file-name="vanno.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vanno.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="189" column="35" lean-forward="false" selection-start-line="189" selection-start-column="35" selection-end-line="189" selection-end-column="35" />
-              <folding>
-                <element signature="e#46#59#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="99">
+              <caret line="1367" column="33" lean-forward="false" selection-start-line="1367" selection-start-column="33" selection-end-line="1367" selection-end-column="33" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -36,8 +35,8 @@
       <file leaf-file-name="vanno_ver.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vanno_ver.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="13680">
-              <caret line="766" column="24" lean-forward="false" selection-start-line="766" selection-start-column="24" selection-end-line="766" selection-end-column="24" />
+            <state relative-caret-position="215">
+              <caret line="745" column="43" lean-forward="false" selection-start-line="745" selection-start-column="43" selection-end-line="745" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -54,9 +53,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>cursess</find>
-      <find>opendirdial</find>
-      <find>cursession</find>
       <find>opendirDi</find>
       <find>self.logged_id</find>
       <find>cursesslinee</find>
@@ -84,6 +80,9 @@
       <find>time</find>
       <find>qtoolbutton</find>
       <find>lineedit</find>
+      <find>.sort(</find>
+      <find>opendirdial</find>
+      <find>#####</find>
     </findStrings>
     <replaceStrings>
       <replace>job_dict_list</replace>
@@ -129,6 +128,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -158,7 +158,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -446,12 +445,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/vanno.py</url>
-          <line>1360</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/vanno.py</url>
-          <line>1470</line>
+          <line>1474</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
@@ -465,18 +459,64 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="9" />
+      <option name="time" value="10" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/vanno.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanno_ver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13680">
+          <caret line="766" column="24" lean-forward="false" selection-start-line="766" selection-start-column="24" selection-end-line="766" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanno.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanno_ver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13680">
+          <caret line="766" column="24" lean-forward="false" selection-start-line="766" selection-start-column="24" selection-end-line="766" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanno.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanno_ver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13680">
+          <caret line="766" column="24" lean-forward="false" selection-start-line="766" selection-start-column="24" selection-end-line="766" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanno.py">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="13590">
           <caret line="755" column="24" lean-forward="false" selection-start-line="755" selection-start-column="24" selection-end-line="755" selection-end-column="24" />
-          <folding>
-            <element signature="e#46#59#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -492,9 +532,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#46#59#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -510,9 +548,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#46#59#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -528,9 +564,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1818">
           <caret line="101" column="37" lean-forward="false" selection-start-line="101" selection-start-column="37" selection-end-line="101" selection-end-column="37" />
-          <folding>
-            <element signature="e#46#59#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -546,9 +580,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#46#59#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -673,29 +705,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vanno_ver.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13680">
-          <caret line="766" column="24" lean-forward="false" selection-start-line="766" selection-start-column="24" selection-end-line="766" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/libs/loginDialog.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="284">
           <caret line="43" column="40" lean-forward="false" selection-start-line="43" selection-start-column="40" selection-end-line="43" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanno_ver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="745" column="43" lean-forward="false" selection-start-line="745" selection-start-column="43" selection-end-line="745" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vanno.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="189" column="35" lean-forward="false" selection-start-line="189" selection-start-column="35" selection-end-line="189" selection-end-column="35" />
-          <folding>
-            <element signature="e#46#59#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="99">
+          <caret line="1367" column="33" lean-forward="false" selection-start-line="1367" selection-start-column="33" selection-end-line="1367" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>

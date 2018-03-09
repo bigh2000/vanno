@@ -1252,7 +1252,7 @@ class MainWindow(QMainWindow, WindowMixin):
         images.sort(key=lambda x: x.lower())
         return images
 
-
+    ###
     def scanAllDirs(self, folderPath):
 
         pre_dirs = os.listdir(folderPath)
@@ -1263,7 +1263,11 @@ class MainWindow(QMainWindow, WindowMixin):
         #             relativePath = os.path.join(root, file)
         #             path = ustr(os.path.abspath(relativePath))
         #             images.append(path)
-        pre_dirs.sort(key=lambda x: x.lower())
+
+        # pre_dirs.sort(key=lambda x: x.lower())
+        pre_dirs_int = [int(dir) for dir in pre_dirs]
+        pre_dirs_int.sort()
+        pre_dirs = [ str(x) for x in pre_dirs_int]
         return pre_dirs
 
 
