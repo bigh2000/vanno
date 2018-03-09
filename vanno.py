@@ -86,7 +86,6 @@ class HashableQListWidgetItem(QListWidgetItem):
 class MainWindow(QMainWindow, WindowMixin):
     FIT_WINDOW, FIT_WIDTH, MANUAL_ZOOM = list(range(3))
 
-
     def __init__(self,logged_id, defaultFilename=None, defaultPrefdefClassFile=None):
         super(MainWindow, self).__init__()
         self.setWindowTitle(__appname__)
@@ -136,8 +135,10 @@ class MainWindow(QMainWindow, WindowMixin):
 
         # Create a widget for using default label
         self.useDefaultLabelCheckbox = QCheckBox(u'Use default label')
-        self.useDefaultLabelCheckbox.setChecked(False)
+        self.useDefaultLabelCheckbox.setChecked(True)
         self.defaultLabelTextLine = QLineEdit()
+        ###
+        self.defaultLabelTextLine.setText('hand')
         useDefaultLabelQHBoxLayout = QHBoxLayout()
         useDefaultLabelQHBoxLayout.addWidget(self.useDefaultLabelCheckbox)
         useDefaultLabelQHBoxLayout.addWidget(self.defaultLabelTextLine)
@@ -150,11 +151,6 @@ class MainWindow(QMainWindow, WindowMixin):
         self.diffcButton.stateChanged.connect(self.btnstate)
         self.editButton = QToolButton()
         self.editButton.setToolButtonStyle(Qt.ToolButtonTextBesideIcon)
-
-        self.saveButton = QToolButton()
-        self.saveButton.setToolButtonStyle(Qt.ToolButtonTextBesideIcon)
-        self.saveButton.setText("Save checking")
-        self.saveButton.clicked.connect(self.saveButtonClicked)
 
         self.edit_label = QLabel()
         self.save_label = QLabel()
@@ -177,6 +173,20 @@ class MainWindow(QMainWindow, WindowMixin):
         self.labelList.itemChanged.connect(self.labelItemChanged)
         listLayout.addWidget(self.labelList)
 
+        ###
+        self.sessLabel = QLabel()
+        self.sessLabel.setText('Input session number.')
+        listLayout.addWidget(self.sessLabel)
+
+        self.curSession = '00'
+        self.curSessLineEdit = QLineEdit()
+        self.curSessLineEdit.setFixedWidth(40);
+        listLayout.addWidget(self.curSessLineEdit)
+        self.openDirButton = QToolButton()
+        self.openDirButton.setText('Open Dir')
+        listLayout.addWidget(self.openDirButton)
+        self.openDirButton.clicked.connect(self.openDirDialog)
+
         listLayout.addWidget(self.anno_label)
         listLayout.addWidget(self.edit_label)
         listLayout.addWidget(self.save_label)
@@ -191,13 +201,18 @@ class MainWindow(QMainWindow, WindowMixin):
 
         folderlistLayout = QVBoxLayout()
         folderlistLayout.setContentsMargins(0, 0, 0, 0)
-        folderlistLayout.addWidget(self.saveButton)
 
         ###
         self.savebtncnt_label = QLabel()
         folderlistLayout.addWidget(self.savebtncnt_label)
         self.savebtn_label = QLabel()
         folderlistLayout.addWidget(self.savebtn_label)
+
+        self.saveButton = QToolButton()
+        self.saveButton.setToolButtonStyle(Qt.ToolButtonTextBesideIcon)
+        self.saveButton.setText("Save checking")
+        self.saveButton.clicked.connect(self.saveButtonClicked)
+        folderlistLayout.addWidget(self.saveButton)
 
         folderlistLayout.addWidget(self.folderListWidget)
         folderListContainer = QWidget()
@@ -256,13 +271,6 @@ class MainWindow(QMainWindow, WindowMixin):
         self.checkList = []
         self.verJobList = []
 
-        file = QFile(server_path + dataset + '/' + self.logged_id + '.txt')
-        if file.open(QFile.ReadOnly | QFile.Text):
-            while not file.atEnd():
-                line = bytearray(file.readLine()).decode().strip()
-                insort(self.checkList, line)
-        file.close()
-
         # Actions
         action = partial(newAction, self)
         quit = action('&Quit', self.close,
@@ -271,8 +279,8 @@ class MainWindow(QMainWindow, WindowMixin):
         open = action('&Open', self.openFile,
                       'Ctrl+O', 'open', u'Open image or label file')
 
-        opendir = action('&Open Dir', self.openDirDialog,
-                         'u', 'open', u'Open Dir')
+        # opendir = action('&Open Dir(x)', self.openDirDialogOld,
+        #                  'u', 'open', u'Open Dir')
 
         changeSavedir = action('&Change Save Dir', self.changeSavedirDialog,
                                'r', 'open', u'Change default saved Annotation dir')
@@ -389,7 +397,7 @@ class MainWindow(QMainWindow, WindowMixin):
                               fitWindow=fitWindow, fitWidth=fitWidth,
                               zoomActions=zoomActions,
                               fileMenuActions=(
-                                  open, opendir, save, saveAs, close, resetAll, quit),
+                                  open, save, saveAs, close, resetAll, quit),
                               beginner=(), advanced=(),
                               editMenu=(edit, copy, delete,
                                         None, color1),
@@ -420,7 +428,7 @@ class MainWindow(QMainWindow, WindowMixin):
         self.lastLabel = None
 
         addActions(self.menus.file,
-                   (open, opendir, changeSavedir, openAnnotation, self.menus.recentFiles, save, saveAs, close, resetAll, quit))
+                   (open, changeSavedir, openAnnotation, self.menus.recentFiles, save, saveAs, close, resetAll, quit))
         addActions(self.menus.help, (help, showInfo))
         addActions(self.menus.view, (
             self.autoSaving,
@@ -440,11 +448,11 @@ class MainWindow(QMainWindow, WindowMixin):
 
         self.tools = self.toolbar('Tools')
         self.actions.beginner = (
-            open, opendir, changeSavedir, openNextImg, openPrevImg, save, None, create, copy, delete, None,
+            open, changeSavedir, openNextImg, openPrevImg, save, None, create, copy, delete, None,
             zoomIn, zoom, zoomOut, fitWindow, fitWidth)
 
         self.actions.advanced = (
-            open, opendir, changeSavedir, openNextImg, openPrevImg, save, None,
+            open, changeSavedir, openNextImg, openPrevImg, save, None,
             createMode, editMode, None,
             hideAll, showAll)
 
@@ -745,7 +753,7 @@ class MainWindow(QMainWindow, WindowMixin):
     ###
     def saveButtonClicked(self):
         self.savebtn_label.setText('')
-        file = QFile(server_path + dataset + '/'+ self.logged_id + '.txt')
+        file = QFile(server_path + dataset + '/'+ self.logged_id + '_' + self.curSession + '.txt')
         if file.open(QFile.WriteOnly | QFile.Text):
             for check in self.checkList:
                 file.write(bytearray(check + '\n', 'utf8'))
@@ -1174,8 +1182,11 @@ class MainWindow(QMainWindow, WindowMixin):
         w = self.centralWidget().width() - 2.0
         return w / self.canvas.pixmap.width()
 
-
+    ###
     def closeEvent(self, event):
+        if self.savebtn_label.text() == 'Not saved':
+            QMessageBox.warning(self, 'Warning', 'You forgot to press save checking button.')
+
         if not self.mayContinue():
             event.ignore()
         settings = self.settings
@@ -1275,8 +1286,15 @@ class MainWindow(QMainWindow, WindowMixin):
                     filename = filename[0]
             self.loadPascalXMLByFilename(filename)
 
+    # def openDirDialogOld(self, _value=False, dirpath=None):
+    #     pass
 
+    ###
     def openDirDialog(self, _value=False, dirpath=None):
+        if self.curSessLineEdit.text() == '':
+            QMessageBox.warning(self, 'Error', 'Input session number.')
+            return
+
         if not self.mayContinue():
             return
 
@@ -1290,6 +1308,17 @@ class MainWindow(QMainWindow, WindowMixin):
         targetDirPath = ustr(QFileDialog.getExistingDirectory(self,
                                                      '%s - Open Directory' % __appname__, defaultOpenDirPath,
                                                      QFileDialog.ShowDirsOnly | QFileDialog.DontResolveSymlinks))
+        ###
+        self.curSession = self.curSessLineEdit.text().zfill(2)
+        self.job_dict_list = self.importJobs(targetDirPath)
+        try:
+            self.job_list = self.job_dict_list[int(self.curSession) - 1][self.logged_id]
+        except:
+            QMessageBox.warning(self, 'Error', 'IndexError: list index out of range')
+            self.folderListWidget.clear()
+            self.savebtncnt_label.setText('')
+            return
+
         self.importDirs(targetDirPath)
 
 
@@ -1305,19 +1334,25 @@ class MainWindow(QMainWindow, WindowMixin):
         self.lastOpenDir = dirpath
         # self.dirname = dirpath
         # self.filePath = None
-        job_dict = self.importJobs(dirpath)
-        # print(job_dict)
-
-        ###
-        job_list = job_dict[self.logged_id]
+        # print(job_dict_list)
 
         self.folderListWidget.clear()
         self.mDirList = self.scanAllDirs(dirpath)
         # self.openNextImg()
 
         ###
+        self.checkList = []
+        self.foldercnt = 0
+
+        file = QFile(server_path + dataset + '/' + self.logged_id + '_' + self.curSession + '.txt')
+        if file.open(QFile.ReadOnly | QFile.Text):
+            while not file.atEnd():
+                line = bytearray(file.readLine()).decode().strip()
+                insort(self.checkList, line)
+        file.close()
+
         for dirPath in self.mDirList:
-            if dirPath in job_list:
+            if dirPath in self.job_list:
                 self.foldercnt += 1
                 item = QListWidgetItem(dirPath)
                 item.setFlags(item.flags() | Qt.ItemIsUserCheckable)
@@ -1461,6 +1496,9 @@ class MainWindow(QMainWindow, WindowMixin):
 
 
     def closeFile(self, _value=False):
+        if self.savebtn_label.text() == 'Not saved':
+            QMessageBox.warning(self, 'Warning', 'Please press save checking button.')
+            return
         if not self.mayContinue():
             return
         self.resetState()
