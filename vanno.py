@@ -3,6 +3,7 @@
 import codecs
 import datetime
 import json
+import os
 import os.path
 import re
 import resources
@@ -44,7 +45,7 @@ from libs.version import __version__
 from libs.zoomWidget import ZoomWidget
 
 __appname__ = 'vanno'
-env_path = "./env/"
+env_path = './env/'
 dataset = 'jester'
 
 # Utility functions and classes.
@@ -97,7 +98,7 @@ class MainWindow(QMainWindow, WindowMixin):
         settings = self.settings
 
         # Save as Pascal voc xml
-        self.defaultSaveDir = ""
+        self.defaultSaveDir = "../vanno_results/" + dataset     ###
         self.defaultSaveDir_folder= ""
         self.usingPascalVocFormat = True
         # For loading all image under a directory
@@ -108,6 +109,11 @@ class MainWindow(QMainWindow, WindowMixin):
         self.lastOpenDir = None
         self.old_Filepath=None
         # self.proj_dir=None
+        self.imageDirPath = None
+        self.imageDirPath_folder = None
+        ###
+        self.job_list_dict = dict()
+        self.job_list = []
 
         # Whether we need to save or not.
         self.dirty = False
@@ -117,8 +123,18 @@ class MainWindow(QMainWindow, WindowMixin):
         self.screencastViewer = "firefox"
         self.screencast = "https://youtu.be/p0nR2YsCY_U"
 
-        self.logged_id=logged_id
+        self.logged_id = logged_id
         self.ids = []
+        # with open(os.path.join(env_path, 'ids.txt'), 'r') as f:
+        #     lines = f.readlines()
+        #     for line in lines:
+        #         self.ids.append(line.replace('\n', ''))
+        file = QFile(env_path + 'ids.txt')
+        if file.open(QFile.ReadOnly | QFile.Text):
+            while(not file.atEnd()):
+                line = bytearray(file.readLine()).decode().strip()
+                self.ids.append(line)
+        file.close()
 
         # Load predefined classes to the list
         if defaultPrefdefClassFile is not None:
@@ -158,6 +174,10 @@ class MainWindow(QMainWindow, WindowMixin):
         self.anno_label = QLabel()
         self.id_label = QLabel()
 
+        ###
+        self.edit_label.setText('Image DIR: ')
+        self.save_label.setText("Save DIR: " + self.defaultSaveDir)
+
         # Add some of widgets to listLayout
         listLayout.addWidget(self.editButton)
         listLayout.addWidget(self.diffcButton)
@@ -179,10 +199,11 @@ class MainWindow(QMainWindow, WindowMixin):
         self.sessLabel.setText('Input session number.')
         listLayout.addWidget(self.sessLabel)
 
-        self.curSession = '00'
+        self.curSession = '01'
         self.curSessLineEdit = QLineEdit()
         self.curSessLineEdit.setFixedWidth(40);
         listLayout.addWidget(self.curSessLineEdit)
+        self.curSessLineEdit.returnPressed.connect(self.importDirs)
 
         # prevSessBtn = QToolButton()
         # prevSessBtn.setArrowType(Qt.LeftArrow)
@@ -193,16 +214,11 @@ class MainWindow(QMainWindow, WindowMixin):
         # listLayout.addWidget(nextSessBtn)
         # # nextSessBtn.clicked.connect()
 
-        self.openDirButton = QToolButton()
-        self.openDirButton.setText('Open Dir')
-        listLayout.addWidget(self.openDirButton)
-        self.openDirButton.clicked.connect(self.openDirDialog)
-
         listLayout.addWidget(self.anno_label)
         listLayout.addWidget(self.edit_label)
         listLayout.addWidget(self.save_label)
 
-        self.dock = QDockWidget(self.logged_id, self)
+        self.dock = QDockWidget('ID: ' + self.logged_id, self)
         self.dock.setObjectName(u'Labels')
         self.dock.setWidget(labelListContainer)
 
@@ -221,7 +237,7 @@ class MainWindow(QMainWindow, WindowMixin):
 
         self.saveButton = QToolButton()
         self.saveButton.setToolButtonStyle(Qt.ToolButtonTextBesideIcon)
-        self.saveButton.setText("Save checking")
+        self.saveButton.setText("Finished folder Save")
         self.saveButton.clicked.connect(self.saveButtonClicked)
         folderlistLayout.addWidget(self.saveButton)
 
@@ -278,7 +294,7 @@ class MainWindow(QMainWindow, WindowMixin):
         # self.dock.setFeatures(self.dock.features() ^ self.dockFeatures)
 
         ###
-        self.foldercnt = 0
+        self.n_folder = 0
         self.checkList = []
         self.verJobList = []
 
@@ -290,8 +306,8 @@ class MainWindow(QMainWindow, WindowMixin):
         open = action('&Open', self.openFile,
                       'Ctrl+O', 'open', u'Open image or label file')
 
-        # opendir = action('&Open Dir(x)', self.openDirDialogOld,
-        #                  'u', 'open', u'Open Dir')
+        opendir = action('&Open Dir', self.openDirDialog,
+                         'u', 'open', u'Open Dir')
 
         changeSavedir = action('&Change Save Dir', self.changeSavedirDialog,
                                'r', 'open', u'Change default saved Annotation dir')
@@ -408,7 +424,7 @@ class MainWindow(QMainWindow, WindowMixin):
                               fitWindow=fitWindow, fitWidth=fitWidth,
                               zoomActions=zoomActions,
                               fileMenuActions=(
-                                  open, save, saveAs, close, resetAll, quit),
+                                  open, opendir, save, saveAs, close, resetAll, quit),
                               beginner=(), advanced=(),
                               editMenu=(edit, copy, delete,
                                         None, color1),
@@ -439,7 +455,7 @@ class MainWindow(QMainWindow, WindowMixin):
         self.lastLabel = None
 
         addActions(self.menus.file,
-                   (open, changeSavedir, openAnnotation, self.menus.recentFiles, save, saveAs, close, resetAll, quit))
+                   (open, opendir, changeSavedir, openAnnotation, self.menus.recentFiles, save, saveAs, close, resetAll, quit))
         addActions(self.menus.help, (help, showInfo))
         addActions(self.menus.view, (
             self.autoSaving,
@@ -459,11 +475,11 @@ class MainWindow(QMainWindow, WindowMixin):
 
         self.tools = self.toolbar('Tools')
         self.actions.beginner = (
-            open, changeSavedir, openNextImg, openPrevImg, save, None, create, copy, delete, None,
+            open, opendir, changeSavedir, openNextImg, openPrevImg, save, None, create, copy, delete, None,
             zoomIn, zoom, zoomOut, fitWindow, fitWidth)
 
         self.actions.advanced = (
-            open, changeSavedir, openNextImg, openPrevImg, save, None,
+            open, opendir, changeSavedir, openNextImg, openPrevImg, save, None,
             createMode, editMode, None,
             hideAll, showAll)
 
@@ -496,11 +512,11 @@ class MainWindow(QMainWindow, WindowMixin):
         self.move(position)
         saveDir = ustr(settings.get(SETTING_SAVE_DIR, None))
         self.lastOpenDir = ustr(settings.get(SETTING_LAST_OPEN_DIR, None))
-        if saveDir is not None and os.path.exists(saveDir):
-            self.defaultSaveDir = saveDir
-            self.statusBar().showMessage('%s started. Annotation will be saved to %s' %
-                                         (__appname__, self.defaultSaveDir))
-            self.statusBar().show()
+        # if saveDir is not None and os.path.exists(saveDir):
+        #     self.defaultSaveDir = saveDir
+        #     self.statusBar().showMessage('%s started. Annotation will be saved to %s' %
+        #                                  (__appname__, self.defaultSaveDir))
+        #     self.statusBar().show()
 
         # self.restoreState(settings.get(SETTING_WIN_STATE, QByteArray()))
         Shape.line_color = self.lineColor = QColor(settings.get(SETTING_LINE_COLOR, DEFAULT_LINE_COLOR))
@@ -536,11 +552,9 @@ class MainWindow(QMainWindow, WindowMixin):
         self.labelCoordinates = QLabel('')
         self.statusBar().addPermanentWidget(self.labelCoordinates)
 
-        # Open Dir if deafult file
+        # Open Dir if default file
         if self.filePath and os.path.isdir(self.filePath):
             self.openDirDialog(dirpath=self.filePath)
-
-        self.save_label.setText("Save DIR: " + self.defaultSaveDir)
 
 
     ## Support Functions ##
@@ -740,9 +754,11 @@ class MainWindow(QMainWindow, WindowMixin):
             foldername = self.mDirList[currIndex]
             if foldername:
                 self.defaultSaveDir_folder = os.path.join(self.defaultSaveDir, foldername)
-                self.importDirImages(os.path.join(self.lastOpenDir,foldername))
+                # self.importDirImages(os.path.join(self.lastOpenDir,foldername))
+                self.importDirImages(os.path.join(self.imageDirPath, foldername))
 
-                self.save_label.setText("Save DIR: " + self.defaultSaveDir_folder)
+                # self.save_label.setText("Save DIR: " + self.defaultSaveDir_folder)
+                self.save_label.setText('Save DIR: ' + self.imageDirPath_folder)#####
 
                 self.fileListWidget.setFocus(True)
                 # self.fileListWidget.setSelected(0)
@@ -757,7 +773,7 @@ class MainWindow(QMainWindow, WindowMixin):
             self.checkList.remove(item.text())
         else:
             insort(self.checkList, item.text())
-        self.savebtncnt_label.setText('{0}/{1}'.format(len(self.checkList), self.foldercnt))
+        self.savebtncnt_label.setText('{0}/{1}'.format(len(self.checkList), self.n_folder))
 
 
     ###
@@ -1129,16 +1145,18 @@ class MainWindow(QMainWindow, WindowMixin):
                     if os.path.isfile(xmlPath):
                         bsucces = self.loadPascalXMLByFilename(xmlPath)
 
-                if bsucces is False:
-                    self.anno_label.setText("")
-                    self.diffcButton.setChecked(False)
-                    self.old_Filepath = str(self.old_Filepath)
-                    self.old_Filepath = ustr(self.old_Filepath)
-                    # print("old: ",self.old_Filepath)
+                ###
+                self.old_Filepath = str(self.old_Filepath)
+                self.old_Filepath = ustr(self.old_Filepath)
+                # print("old: ",self.old_Filepath)
+                basename_old = os.path.basename(
+                    os.path.splitext(self.old_Filepath)[0]) + XML_EXT
+                xmlPath_old = os.path.join(self.defaultSaveDir_folder, basename_old)
 
-                    basename_old = os.path.basename(
-                        os.path.splitext(self.old_Filepath)[0]) + XML_EXT
-                    xmlPath_old = os.path.join(self.defaultSaveDir_folder, basename_old)
+                if bsucces is False:
+                    self.anno_label.setText('')
+                    self.diffcButton.setChecked(False)
+
                     bsucces = self.loadPascalXMLByFilename(xmlPath_old, False)
                     self.diffcButton.setChecked(False)
                     if bsucces is True:
@@ -1199,7 +1217,7 @@ class MainWindow(QMainWindow, WindowMixin):
     ###
     def closeEvent(self, event):
         if self.savebtn_label.text() == 'Not saved':
-            QMessageBox.warning(self, 'Warning', 'You forgot to press save checking button.')
+            QMessageBox.warning(self, 'Warning', 'You forgot to press Finished folder Save button.')
 
         if not self.mayContinue():
             event.ignore()
@@ -1304,63 +1322,36 @@ class MainWindow(QMainWindow, WindowMixin):
                     filename = filename[0]
             self.loadPascalXMLByFilename(filename)
 
-    # def openDirDialogOld(self, _value=False, dirpath=None):
-    #     pass
 
-    ###
     def openDirDialog(self, _value=False, dirpath=None):
-        if self.curSessLineEdit.text() == '':
-            QMessageBox.warning(self, 'Error', 'Input session number.')
-            return
-
         if not self.mayContinue():
             return
 
-        defaultOpenDirPath = dirpath if dirpath else '.'
+        self.imageDirPath = '../vanno_data/' + dataset ###
+        self.imageDirPath = ustr(QFileDialog.getExistingDirectory(self,
+                                                              '%s - Open Directory' % __appname__, self.imageDirPath,
+                                                              QFileDialog.ShowDirsOnly | QFileDialog.DontResolveSymlinks))
 
-        if self.lastOpenDir and os.path.exists(self.lastOpenDir):
-            defaultOpenDirPath = self.lastOpenDir
-        else:
-            defaultOpenDirPath = os.path.dirname(self.filePath) if self.filePath else '.'
-
-        targetDirPath = ustr(QFileDialog.getExistingDirectory(self,
-                                                     '%s - Open Directory' % __appname__, defaultOpenDirPath,
-                                                     QFileDialog.ShowDirsOnly | QFileDialog.DontResolveSymlinks))
-        ###
-        self.curSession = self.curSessLineEdit.text().zfill(2)
-        self.job_dict_list = self.importJobs(targetDirPath)
-        try:
-            self.job_list = self.job_dict_list[int(self.curSession) - 1][self.logged_id]
-        except:
-            QMessageBox.warning(self, 'Error', 'IndexError: list index out of range')
-            self.folderListWidget.clear()
-            self.savebtncnt_label.setText('')
-            return
-
-        self.importDirs(targetDirPath)
+        self.job_list_dict = self.importJobs(self.imageDirPath)
+        self.importDirs()
 
 
     def importJobs(self, envpath):
-        envpath = env_path + envpath.split("/")[-1]
-        return json.load(open(os.path.join(envpath,"job_assign.json")))
+        job_assign_path = os.path.join(env_path, dataset)
+        return json.load(open(os.path.join(job_assign_path, "job_assign.json")))
 
 
-    def importDirs(self, dirpath):
-        if not self.mayContinue() or not dirpath:
+    def importDirs(self):
+        if not self.mayContinue():
             return
 
-        self.lastOpenDir = dirpath
-        # self.dirname = dirpath
-        # self.filePath = None
-        # print(job_dict_list)
-
+        self.curSession = self.curSessLineEdit.text()
+        self.lastOpenDir = os.path.join(self.imageDirPath, self.curSession)###
         self.folderListWidget.clear()
-        self.mDirList = self.scanAllDirs(dirpath)
-        # self.openNextImg()
 
         ###
         self.checkList = []
-        self.foldercnt = 0
+        self.n_folder = 0
 
         file = QFile(env_path + dataset + '/' + self.logged_id + '_' + self.curSession + '.txt')
         if file.open(QFile.ReadOnly | QFile.Text):
@@ -1369,19 +1360,21 @@ class MainWindow(QMainWindow, WindowMixin):
                 insort(self.checkList, line)
         file.close()
 
-        for dirPath in self.mDirList:
-            if dirPath in self.job_list:
-                self.foldercnt += 1
-                item = QListWidgetItem(dirPath)
-                item.setFlags(item.flags() | Qt.ItemIsUserCheckable)
-                if item.text() in self.checkList:
-                    item.setCheckState(Qt.Checked)
-                else:
-                    item.setCheckState(Qt.Unchecked)
-                self.folderListWidget.addItem(item)
+        self.job_list = self.job_list_dict[self.logged_id]
+        self.mDirList = self.job_list[int(self.curSession) - 1]
 
-        self.savebtncnt_label.setText('{0}/{1}'.format(len(self.checkList), self.foldercnt))
-        self.edit_label.setText("Edit DIR: " + dirpath)
+        for folder_path in self.mDirList:
+            self.n_folder += 1
+            item = QListWidgetItem(folder_path)
+            item.setFlags(item.flags() | Qt.ItemIsUserCheckable)
+            if item.text() in self.checkList:
+                item.setCheckState(Qt.Checked)
+            else:
+                item.setCheckState(Qt.Unchecked)
+            self.folderListWidget.addItem(item)
+
+        self.savebtncnt_label.setText('{0}/{1}'.format(len(self.checkList), self.n_folder))
+        self.edit_label.setText("Image DIR: " + self.imageDirPath)
 
 
     def importDirImages(self, dirpath):
@@ -1398,7 +1391,7 @@ class MainWindow(QMainWindow, WindowMixin):
         for imgPath in self.mImgList:
             item = QListWidgetItem(imgPath)
             self.fileListWidget.addItem(item)
-        self.edit_label.setText("Edit DIR: " + dirpath)
+        self.edit_label.setText("Image DIR: " + dirpath)
 
 
     def openPrevImg(self, _value=False):
@@ -1420,11 +1413,24 @@ class MainWindow(QMainWindow, WindowMixin):
         if self.filePath is None:
             return
 
-        currIndex = self.mImgList.index(self.filePath)
-        if currIndex - 1 >= 0:
-            filename = self.mImgList[currIndex - 1]
-            if filename:
-                self.loadFile(filename)
+        # currIndex = self.mImgList.index(self.filePath)
+        # if currIndex - 1 >= 0:
+        #     filename = self.mImgList[currIndex - 1]
+        #     if filename:
+        #         self.loadFile(filename)
+
+        ###
+        self.old_Filepath = self.filePath
+        filename = None
+        if self.filePath is None:
+            filename = self.mImgList[0]
+        else:
+            currIndex = self.mImgList.index(self.filePath)
+            if currIndex - 1 >= 0:
+                filename = self.mImgList[currIndex - 1]
+
+        if filename:
+            self.loadFile(filename)
 
 
     def openNextImg(self, _value=False):
@@ -1443,7 +1449,7 @@ class MainWindow(QMainWindow, WindowMixin):
         if len(self.mImgList) <= 0:
             return
 
-        # print("now ", self.filePath)
+        ###
         self.old_Filepath=self.filePath
         filename = None
         if self.filePath is None:
@@ -1515,7 +1521,7 @@ class MainWindow(QMainWindow, WindowMixin):
 
     def closeFile(self, _value=False):
         if self.savebtn_label.text() == 'Not saved':
-            QMessageBox.warning(self, 'Warning', 'Please press save checking button.')
+            QMessageBox.warning(self, 'Warning', 'Please press "Finished folder Save" button.')
             return
         if not self.mayContinue():
             return
