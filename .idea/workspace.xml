@@ -2,8 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b5ed2b8a-2a1b-4398-874e-4ddd78cd315e" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1_make_result_dir.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/2_distribute_dir.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/2_distribute_dir_old.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/env/jester/.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/env/jester/Statistics.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/env/jester/job_assign.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/env/jester/job_assign_old.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/env/jester/predefined_classes.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/env/jester/vdo_data1_00.txt" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/2_distribute_dir.py" afterPath="$PROJECT_DIR$/2_distribute_dir.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanno.py" afterPath="$PROJECT_DIR$/vanno.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,56 +29,19 @@
     <option name="PATCH_PATH" value="" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="vanno" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="vanno.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vanno.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="1310" column="32" lean-forward="false" selection-start-line="1310" selection-start-column="32" selection-end-line="1310" selection-end-column="32" />
+            <state relative-caret-position="261">
+              <caret line="207" column="13" lean-forward="true" selection-start-line="207" selection-start-column="13" selection-end-line="207" selection-end-column="13" />
               <folding>
                 <element signature="e#46#59#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="2_distribute_dir.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/2_distribute_dir.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="4" column="7" lean-forward="false" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="builtins.py" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.PyCharmCE2016.3/system/python_stubs/-1247971764/builtins.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="12" column="29" lean-forward="false" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="1_make_result_dir.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/1_make_result_dir.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="3" column="28" lean-forward="true" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="vanno_ver.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vanno_ver.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23742">
-              <caret line="1325" column="28" lean-forward="false" selection-start-line="1325" selection-start-column="28" selection-end-line="1325" selection-end-column="28" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -86,36 +57,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>changeSession</find>
-      <find>ImportDir</find>
-      <find>Import</find>
-      <find>importDir</find>
-      <find>self.importDir</find>
-      <find>connect(self.c</find>
-      <find>importDirs</find>
-      <find>dir_dict_list</find>
-      <find>dir_dict_sess</find>
-      <find>int(id</find>
-      <find>i</find>
-      <find>vdo</find>
-      <find>job_dict_list</find>
-      <find>foldercnt</find>
-      <find>folder_cnt</find>
-      <find>input session</find>
-      <find>defaultopendirpath</find>
-      <find>defaultopendir</find>
-      <find>importJobs</find>
-      <find>job_list_dict</find>
-      <find>self.imageDirPath</find>
-      <find>ids</find>
-      <find>.strip()</find>
-      <find>scanAllDirs</find>
-      <find>mDirList</find>
-      <find>job_list_per_sess</find>
-      <find>importDirImages</find>
-      <find>imageDirPath</find>
+      <find>saved</find>
+      <find>savebtn_label</find>
+      <find>shortcut</find>
+      <find>difficult</find>
+      <find>&quot;</find>
+      <find>diffcbutton</find>
+      <find>btnstate</find>
+      <find>predefined_</find>
+      <find>defaultPrefdefClassFile</find>
+      <find>labelHist</find>
+      <find>'hand'</find>
+      <find>Img:</find>
+      <find>loadlabels(</find>
+      <find>checklist</find>
+      <find>env_path</find>
+      <find>dataset</find>
+      <find>setlayout</find>
+      <find>folderlistLayout3</find>
+      <find>folderListContainer3</find>
+      <find>labelListContainer</find>
+      <find>yes</find>
+      <find>def</find>
+      <find>addwidget</find>
+      <find>def a</find>
+      <find>def b</find>
+      <find>def c</find>
+      <find>prev</find>
       <find>#####</find>
-      <find>opendir</find>
+      <find>savePascalVocFormat</find>
+      <find>prevSe</find>
     </findStrings>
     <replaceStrings>
       <replace>job_dict_list</replace>
@@ -124,6 +95,9 @@
       <replace>dir_dict_all</replace>
       <replace>dir_list</replace>
       <replace>n_folder</replace>
+      <replace>self.job_list_per_sess</replace>
+      <replace>Save finished folders</replace>
+      <replace>test_widget</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -138,6 +112,7 @@
         <option value="$PROJECT_DIR$/resources.py" />
         <option value="$PROJECT_DIR$/2_distribute_dir_old.py" />
         <option value="$PROJECT_DIR$/2_distribute_dir.py" />
+        <option value="$PROJECT_DIR$/distribute_dir.py" />
         <option value="$PROJECT_DIR$/vanno.py" />
       </list>
     </option>
@@ -169,6 +144,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -181,24 +157,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vanno" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vanno" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="libs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -206,24 +167,6 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager" selected="Python.vanno">
-    <configuration default="false" name="labelImg" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="vanno" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/labelImg.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
     <configuration default="false" name="vanno_ver" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -292,6 +235,24 @@
       <module name="vanno" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/2_distribute_dir_old.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="distribute_dir" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="vanno" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/distribute_dir.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -438,19 +399,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.labelImg" />
-      <item index="1" class="java.lang.String" itemvalue="Python.vanno_ver" />
-      <item index="2" class="java.lang.String" itemvalue="Python.vanno" />
-      <item index="3" class="java.lang.String" itemvalue="Python.2_distribute_dir" />
-      <item index="4" class="java.lang.String" itemvalue="Python.2_distribute_dir_old" />
+      <item index="0" class="java.lang.String" itemvalue="Python.vanno_ver" />
+      <item index="1" class="java.lang.String" itemvalue="Python.vanno" />
+      <item index="2" class="java.lang.String" itemvalue="Python.2_distribute_dir" />
+      <item index="3" class="java.lang.String" itemvalue="Python.2_distribute_dir_old" />
+      <item index="4" class="java.lang.String" itemvalue="Python.distribute_dir" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.vanno" />
-        <item index="1" class="java.lang.String" itemvalue="Python.2_distribute_dir" />
-        <item index="2" class="java.lang.String" itemvalue="Python.2_distribute_dir_old" />
-        <item index="3" class="java.lang.String" itemvalue="Python.vanno_ver" />
-        <item index="4" class="java.lang.String" itemvalue="Python.labelImg" />
+        <item index="1" class="java.lang.String" itemvalue="Python.distribute_dir" />
+        <item index="2" class="java.lang.String" itemvalue="Python.2_distribute_dir" />
+        <item index="3" class="java.lang.String" itemvalue="Python.2_distribute_dir_old" />
+        <item index="4" class="java.lang.String" itemvalue="Python.vanno_ver" />
       </list>
     </recent_temporary>
   </component>
@@ -480,28 +441,28 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="24" width="2495" height="1056" extended-state="7" />
+    <frame x="65" y="24" width="2495" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20293997" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20783994" sideWeight="0.49582464" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985386" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32776618" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24989791" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20620662" sideWeight="0.50417536" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3966597" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32776618" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3966597" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -512,13 +473,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/vanno.py</url>
-          <line>760</line>
-          <option name="timeStamp" value="139" />
-        </line-breakpoint>
-      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
@@ -529,7 +483,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="140" />
+      <option name="time" value="158" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
@@ -538,17 +492,17 @@
         <watch expression="self.job_list_dict" />
         <watch expression="self.job_list" />
         <watch expression="self.ids" />
+        <watch expression="self.job_list_per_sess" />
+        <watch expression="self.checkList" />
+        <watch expression="self.labelHist" />
       </configuration>
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vanno.py">
+    <entry file="file://$PROJECT_DIR$/vanno_ver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#46#59#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="13302">
+          <caret line="745" column="43" lean-forward="false" selection-start-line="745" selection-start-column="43" selection-end-line="745" selection-end-column="43" />
         </state>
       </provider>
     </entry>
@@ -566,25 +520,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="13302">
           <caret line="745" column="43" lean-forward="false" selection-start-line="745" selection-start-column="43" selection-end-line="745" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vanno.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#46#59#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vanno_ver.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13302">
-          <caret line="745" column="43" lean-forward="false" selection-start-line="745" selection-start-column="43" selection-end-line="745" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -602,7 +537,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="13680">
           <caret line="766" column="24" lean-forward="false" selection-start-line="766" selection-start-column="24" selection-end-line="766" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -620,7 +554,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="13680">
           <caret line="766" column="24" lean-forward="false" selection-start-line="766" selection-start-column="24" selection-end-line="766" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -638,7 +571,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="13680">
           <caret line="766" column="24" lean-forward="false" selection-start-line="766" selection-start-column="24" selection-end-line="766" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -656,7 +588,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="13680">
           <caret line="766" column="24" lean-forward="false" selection-start-line="766" selection-start-column="24" selection-end-line="766" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -674,7 +605,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="13680">
           <caret line="766" column="24" lean-forward="false" selection-start-line="766" selection-start-column="24" selection-end-line="766" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -692,7 +622,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="13680">
           <caret line="766" column="24" lean-forward="false" selection-start-line="766" selection-start-column="24" selection-end-line="766" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -710,7 +639,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -753,13 +681,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/libs/labelDialog.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="25" lean-forward="false" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources.qrc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -798,39 +719,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/lib/python3.5/codecs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
-          <caret line="894" column="0" lean-forward="false" selection-start-line="894" selection-start-column="0" selection-end-line="894" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libs/labelFile.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="54" column="19" lean-forward="false" selection-start-line="54" selection-start-column="15" selection-end-line="54" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libs/pascal_voc_io.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="115" column="23" lean-forward="true" selection-start-line="115" selection-start-column="23" selection-end-line="115" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="15" column="5" lean-forward="false" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vanno_ver.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23742">
-          <caret line="1325" column="28" lean-forward="false" selection-start-line="1325" selection-start-column="28" selection-end-line="1325" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -842,26 +734,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2_distribute_dir_old.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="50" column="44" lean-forward="true" selection-start-line="50" selection-start-column="44" selection-end-line="50" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/2_distribute_dir_old.py" />
     <entry file="file://$PROJECT_DIR$/1_make_result_dir.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
-          <caret line="3" column="28" lean-forward="true" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
-          <folding />
+          <caret line="3" column="28" lean-forward="false" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2_distribute_dir.py">
+    <entry file="file://$USER_HOME$/.PyCharmCE2016.3/system/python_stubs/-1247971764/PyQt5/QtWidgets/QLabel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="7" lean-forward="false" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
-          <folding />
+        <state relative-caret-position="182">
+          <caret line="177" column="8" lean-forward="false" selection-start-line="177" selection-start-column="8" selection-end-line="177" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -873,17 +757,67 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.PyCharmCE2016.3/system/python_stubs/-1247971764/PyQt5/QtWidgets/QLabel.py">
+    <entry file="file://$PROJECT_DIR$/2_distribute_dir.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="177" column="8" lean-forward="false" selection-start-line="177" selection-start-column="8" selection-end-line="177" selection-end-column="8" />
+        <state relative-caret-position="72">
+          <caret line="4" column="7" lean-forward="false" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanno_ver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="1315" column="26" lean-forward="false" selection-start-line="1315" selection-start-column="8" selection-end-line="1315" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/python3.5/functools.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4914">
+          <caret line="276" column="33" lean-forward="false" selection-start-line="276" selection-start-column="33" selection-end-line="276" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libs/labelDialog.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="666">
+          <caret line="37" column="29" lean-forward="false" selection-start-line="37" selection-start-column="23" selection-end-line="37" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libs/pascal_voc_io.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="120" column="33" lean-forward="false" selection-start-line="120" selection-start-column="33" selection-end-line="120" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/python3.5/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-196">
+          <caret line="861" column="4" lean-forward="false" selection-start-line="861" selection-start-column="4" selection-end-line="861" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libs/labelFile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="26" column="29" lean-forward="true" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/distribute_dir.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="41" column="39" lean-forward="true" selection-start-line="41" selection-start-column="39" selection-end-line="41" selection-end-column="39" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vanno.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="1310" column="32" lean-forward="false" selection-start-line="1310" selection-start-column="32" selection-end-line="1310" selection-end-column="32" />
+        <state relative-caret-position="261">
+          <caret line="207" column="13" lean-forward="true" selection-start-line="207" selection-start-column="13" selection-end-line="207" selection-end-column="13" />
           <folding>
             <element signature="e#46#59#0" expanded="true" />
           </folding>

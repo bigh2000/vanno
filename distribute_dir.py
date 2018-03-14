@@ -1,13 +1,15 @@
 ﻿import os, json
 
 ids = []
-env_path = './env'
-with open(os.path.join(env_path, 'ids.txt'), 'r') as f:
+dataset = 'jester'
+env_path = '../vanno_results/' + dataset + '_env'
+
+with open('./env/ids.txt', 'r') as f:
     lines = f.readlines()
     for line in lines:
         ids.append(line.replace('\n', ''))
 
-data_path = '../vanno_data/jester'
+data_path = '../vanno_data/' + dataset
 dirs = os.listdir(data_path)
 dirs_int = [int(d) for d in dirs]
 dirs_int.sort()
@@ -47,19 +49,6 @@ for sess in range(n_sess):
                 cnt += 1
         dir_dict_all[id].append(dir_list)
 
-
-# ### 마지막 세션
-# for id in ids:
-#     dir_list = []
-#     if int(id[-1]) <= rem_per_sess:
-#         for j in range(n_dir_per_sess_per_id + 1):
-#             dir_list.append(dirs[cnt])
-#             cnt += 1
-#     else:
-#         for j in range(n_dir_per_sess_per_id):
-#             dir_list.append(dirs[cnt])
-#             cnt += 1
-
-
-dataset = 'jester'
-json.dump(dir_dict_all, open(os.path.join(env_path, dataset + '/job_assign.json'), 'w'), indent=2)
+if not os.path.exists(env_path):
+    os.makedirs(env_path)
+json.dump(dir_dict_all, open(os.path.join(env_path, 'job_assign.json'), 'w'), indent=2)
