@@ -47,6 +47,7 @@ from libs.zoomWidget import ZoomWidget
 __appname__ = 'vanno'
 dataset = 'jester'
 env_path = '../vanno_results/' + dataset + '_env'
+results_path = '../vanno_results/' + dataset
 
 # Utility functions and classes.
 def have_qstring():
@@ -169,9 +170,17 @@ class MainWindow(QMainWindow, WindowMixin):
         self.editButton = QToolButton()
         self.editButton.setToolButtonStyle(Qt.ToolButtonTextBesideIcon)
 
+        self.start_label = QLabel()
+        self.start_label.setText('Start: ')
+        self.start_label.setFixedWidth(130)
+        self.end_label = QLabel()
+        self.end_label.setText('End: ')
+        self.end_label.setFixedWidth(130)
+
         self.edit_label = QLabel()
         self.save_label = QLabel()
         self.anno_label = QLabel()
+        self.anno_label.setText('XML: ')
         self.id_label = QLabel()
 
         ###
@@ -204,7 +213,7 @@ class MainWindow(QMainWindow, WindowMixin):
         self.curSessLineEdit.setFixedWidth(40)
         self.curSessLineEdit.returnPressed.connect(self.importDirs)
 
-        #####
+        ###
         self.prevSessBtn = QToolButton()
         self.prevSessBtn.setArrowType(Qt.LeftArrow)
         self.prevSessBtn.clicked.connect(self.prevSess)
@@ -213,11 +222,14 @@ class MainWindow(QMainWindow, WindowMixin):
         self.nextSessBtn.clicked.connect(self.nextSess)
 
         hbox = QHBoxLayout()
-        hbox.addStretch()
+        # hbox.addStretch()
         hbox.addWidget(self.prevSessBtn)
         hbox.addWidget(self.curSessLineEdit)
         hbox.addWidget(self.nextSessBtn)
         listLayout.addLayout(hbox)
+
+        hbox.addWidget(self.start_label)
+        hbox.addWidget(self.end_label)
 
         listLayout.addWidget(self.anno_label)
         listLayout.addWidget(self.edit_label)
@@ -239,6 +251,7 @@ class MainWindow(QMainWindow, WindowMixin):
         self.savebtncnt_label = QLabel()
         folderlistLayout.addWidget(self.savebtncnt_label)
         self.savebtn_label = QLabel()
+        self.savebtn_label.setStyleSheet('color: red')
         folderlistLayout.addWidget(self.savebtn_label)
 
         self.saveButton = QToolButton()
@@ -305,12 +318,13 @@ class MainWindow(QMainWindow, WindowMixin):
         self.start_img_file = ''
         self.end_img_file = ''
 
+
         # Actions
         action = partial(newAction, self)
         ###
-        StartImg = action('Start Image', self.set_start, '[', 'start', 'Set as start image')
+        StartImg = action('Start Image', self.set_start, 'q', 'start', 'Set as start image')
 
-        EndImg = action('End Image', self.set_end, ']', 'end', 'Set as end image')
+        EndImg = action('End Image', self.set_end, 'e', 'end', 'Set as end image')
 
         quit = action('&Quit', self.close,
                       'Ctrl+Q', 'quit', u'Quit application')
@@ -724,8 +738,7 @@ class MainWindow(QMainWindow, WindowMixin):
 
     def closeFile(self, _value=False):
         if self.savebtn_label.text() == 'Not saved':
-            QMessageBox.warning(self, 'Warning', 'Please press "Save finished folders" button.')
-            return
+            return QMessageBox.warning(self, 'Warning', 'Please press "Save finished folders" button.')
         if not self.mayContinue():
             return
         self.resetState()
@@ -775,7 +788,6 @@ class MainWindow(QMainWindow, WindowMixin):
     def diritemChanged(self, item=None):
         # QMessageBox.warning(self, u'changed', msg, yes | no)
         self.savebtn_label.setText('Not saved')
-        self.savebtn_label.setStyleSheet('color: red')
         if item.text() in self.checkList:
             self.checkList.remove(item.text())
         else:
@@ -859,9 +871,9 @@ class MainWindow(QMainWindow, WindowMixin):
         if not self.mayContinue():
             return
 
+        self.checkList = []
         file = QFile(env_path + '/' + self.logged_id + '_' + str(int(self.curSessLineEdit.text())).zfill(2) + '.txt')
         if file.open(QFile.ReadOnly | QFile.Text):
-            self.checkList = []
             while not file.atEnd():
                 line = bytearray(file.readLine()).decode().strip()
                 insort(self.checkList, line)
@@ -994,7 +1006,7 @@ class MainWindow(QMainWindow, WindowMixin):
                 xmlPath_old = os.path.join(self.defaultSaveDir_folder, basename_old)
 
                 if bsucces is False:
-                    self.anno_label.setText('')
+                    self.anno_label.setText('XML: ')
                     self.diffcButton.setChecked(False)
 
                     bsucces = self.loadPascalXMLByFilename(xmlPath_old, False)
@@ -1002,8 +1014,8 @@ class MainWindow(QMainWindow, WindowMixin):
                     if bsucces is True:
                         self.actions.save.setEnabled(True)
                 else:
-                    self.anno_label.setText(xmlPath)
-                    self.anno_label.setStyleSheet('color: red')
+                    self.anno_label.setText('XML: ' + xmlPath)
+                    # self.anno_label.setStyleSheet('color: red')
 
             self.setWindowTitle(__appname__ + ' ' + filePath)
 
@@ -1129,6 +1141,8 @@ class MainWindow(QMainWindow, WindowMixin):
     def nextSess(self):
         if int(self.curSessLineEdit.text()) >= len(self.job_list):
             return QMessageBox.warning(self, 'Error', '<p><b>IndexError:</b></p>list index out of range')
+        if self.savebtn_label.text() == 'Not saved':
+            return QMessageBox.warning(self, 'Warning', 'You forgot to press "Save finished folders" button.')
         self.curSessLineEdit.setText(str(int(self.curSessLineEdit.text()) + 1))
         self.importDirs()
 
@@ -1277,6 +1291,8 @@ class MainWindow(QMainWindow, WindowMixin):
     def prevSess(self):
         if int(self.curSessLineEdit.text()) - 1 <= 0:
             return QMessageBox.warning(self, 'Error', '<p><b>IndexError:</b></p>list index out of range')
+        if self.savebtn_label.text() == 'Not saved':
+            return QMessageBox.warning(self, 'Warning', 'You forgot to press "Save finished folders" button.')
         self.curSessLineEdit.setText(str(int(self.curSessLineEdit.text()) - 1))
         self.importDirs()
 
@@ -1504,13 +1520,26 @@ class MainWindow(QMainWindow, WindowMixin):
 
 
     def set_end(self):
-        if self.start_img_file == '':
-            self.start_img_file = self.filePath
-        elif self.start_img_file == self.filePath:
-            self.start_img_file = ''
+        if self.end_img_file == '':
+            self.end_img_file = self.filePath
+        elif self.end_img_file == self.filePath:
+            self.end_img_file = ''
         else:
-            self.start_img_file = self.filePath
-        print(self.start_img_file)
+            self.end_img_file = self.filePath
+
+        if self.end_img_file != '':
+            self.end_label.setText('End: ' + os.path.basename(self.end_img_file))
+
+            foldername = os.path.dirname(self.filePath).split('/')[-1]
+            filedir = os.path.join(results_path, foldername)
+            if not os.path.exists(filedir):
+                os.makedirs(filedir)
+
+            file = QFile(os.path.join(filedir, 'start_end.txt'))
+            if file.open(QFile.WriteOnly | QFile.Text):
+                file.write(bytearray(self.start_img_file + '\n', 'utf8'))
+                file.write(bytearray(self.end_img_file + '\n', 'utf8'))
+            file.close()
 
 
     def setFitWidth(self, value=True):
@@ -1534,7 +1563,20 @@ class MainWindow(QMainWindow, WindowMixin):
             self.start_img_file = ''
         else:
             self.start_img_file = self.filePath
-        print(self.start_img_file)
+
+        if self.start_img_file != '':
+            self.start_label.setText('Start: ' + os.path.basename(self.start_img_file))
+
+            foldername = os.path.dirname(self.filePath).split('/')[-1]
+            filedir = os.path.join(results_path, foldername)
+            if not os.path.exists(filedir):
+                os.makedirs(filedir)
+
+            file = QFile(os.path.join(filedir, 'start_end.txt'))
+            if file.open(QFile.WriteOnly | QFile.Text):
+                file.write(bytearray(self.start_img_file + '\n', 'utf8'))
+                file.write(bytearray(self.end_img_file + '\n', 'utf8'))
+            file.close()
 
 
     def setZoom(self, value):
