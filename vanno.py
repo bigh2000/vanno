@@ -201,25 +201,23 @@ class MainWindow(QMainWindow, WindowMixin):
 
         self.curSession = 1
         self.curSessLineEdit = QLineEdit()
-        self.curSessLineEdit.setFixedWidth(40);
-        listLayout.addWidget(self.curSessLineEdit)
+        self.curSessLineEdit.setFixedWidth(40)
         self.curSessLineEdit.returnPressed.connect(self.importDirs)
 
         #####
-        # listLayout2 = QHBoxLayout()
-        # listLayout2.setContentsMargins(0, 0, 0, 0)
-        #
         self.prevSessBtn = QToolButton()
         self.prevSessBtn.setArrowType(Qt.LeftArrow)
-        # listLayout.addWidget(self.prevSessBtn)
-        # self.prevSessBtn.clicked.connect(self.prevSess)
+        self.prevSessBtn.clicked.connect(self.prevSess)
         self.nextSessBtn = QToolButton()
         self.nextSessBtn.setArrowType(Qt.RightArrow)
-        # listLayout.addWidget(self.nextSessBtn)
-        # self.nextSessBtn.clicked.connect(self.nextSess)
-        #
-        # sess_widget = QWidget()
-        # sess_widget.setLayout(listLayout2)
+        self.nextSessBtn.clicked.connect(self.nextSess)
+
+        hbox = QHBoxLayout()
+        hbox.addStretch()
+        hbox.addWidget(self.prevSessBtn)
+        hbox.addWidget(self.curSessLineEdit)
+        hbox.addWidget(self.nextSessBtn)
+        listLayout.addLayout(hbox)
 
         listLayout.addWidget(self.anno_label)
         listLayout.addWidget(self.edit_label)
@@ -304,10 +302,16 @@ class MainWindow(QMainWindow, WindowMixin):
         ###
         self.n_folder = 0
         self.checkList = []
-        self.verJobList = []
+        self.start_img_file = ''
+        self.end_img_file = ''
 
         # Actions
         action = partial(newAction, self)
+        ###
+        StartImg = action('Start Image', self.set_start, '[', 'start', 'Set as start image')
+
+        EndImg = action('End Image', self.set_end, ']', 'end', 'Set as end image')
+
         quit = action('&Quit', self.close,
                       'Ctrl+Q', 'quit', u'Quit application')
 
@@ -426,7 +430,7 @@ class MainWindow(QMainWindow, WindowMixin):
             self.popLabelListMenu)
 
         # Store actions for further handling.
-        self.actions = struct(save=save, saveAs=saveAs, open=open, close=close, resetAll = resetAll,
+        self.actions = struct(save=save, saveAs=saveAs, open=open, close=close, resetAll=resetAll,
                               lineColor=color1, create=create, delete=delete, edit=edit, copy=copy,
                               createMode=createMode, editMode=editMode, advancedMode=advancedMode,
                               shapeLineColor=shapeLineColor, shapeFillColor=shapeFillColor,
@@ -465,7 +469,7 @@ class MainWindow(QMainWindow, WindowMixin):
         self.lastLabel = None
 
         addActions(self.menus.file,
-                   (open, opendir, changeSavedir, openAnnotation, self.menus.recentFiles, save, saveAs, close, resetAll, quit))
+                   (StartImg, EndImg, open, opendir, changeSavedir, openAnnotation, self.menus.recentFiles, save, saveAs, close, resetAll, quit))
         addActions(self.menus.help, (help, showInfo))
         addActions(self.menus.view, (
             self.autoSaving,
@@ -767,7 +771,6 @@ class MainWindow(QMainWindow, WindowMixin):
             for action in self.actions.onShapesPresent:
                 action.setEnabled(False)
 
-
     ###
     def diritemChanged(self, item=None):
         # QMessageBox.warning(self, u'changed', msg, yes | no)
@@ -865,8 +868,6 @@ class MainWindow(QMainWindow, WindowMixin):
         file.close()
         self.job_list = self.job_list_dict[self.logged_id]
         if int(self.curSessLineEdit.text()) > len(self.job_list) or int(self.curSessLineEdit.text()) <= 0:
-            # self.folderListWidget.clear()
-            # return QMessageBox.critical(self, 'Error', '<p><b>IndexError:</b></p>list index out of range')
             return QMessageBox.warning(self, 'Error', '<p><b>IndexError:</b></p>list index out of range')
 
         ###
@@ -1125,6 +1126,13 @@ class MainWindow(QMainWindow, WindowMixin):
             self.canvas.resetAllLines()
 
 
+    def nextSess(self):
+        if int(self.curSessLineEdit.text()) >= len(self.job_list):
+            return QMessageBox.warning(self, 'Error', '<p><b>IndexError:</b></p>list index out of range')
+        self.curSessLineEdit.setText(str(int(self.curSessLineEdit.text()) + 1))
+        self.importDirs()
+
+
     def noShapes(self):
         return not self.itemsToShapes
 
@@ -1150,9 +1158,7 @@ class MainWindow(QMainWindow, WindowMixin):
         if not self.mayContinue():
             return
 
-        # self.imageDirPath = '../vanno_data/' + dataset ###
-        self.imageDirPath = ustr(QFileDialog.getExistingDirectory(self,
-                                                              '%s - Open Directory' % __appname__, '../vanno_data/',
+        self.imageDirPath = ustr(QFileDialog.getExistingDirectory(self, '%s - Open Directory' % __appname__, '../vanno_data/',
                                                               QFileDialog.ShowDirsOnly | QFileDialog.DontResolveSymlinks))
 
         self.job_list_dict = self.importJobs()
@@ -1268,6 +1274,13 @@ class MainWindow(QMainWindow, WindowMixin):
         addActions(self.menus.edit, actions + self.actions.editMenu)
 
 
+    def prevSess(self):
+        if int(self.curSessLineEdit.text()) - 1 <= 0:
+            return QMessageBox.warning(self, 'Error', '<p><b>IndexError:</b></p>list index out of range')
+        self.curSessLineEdit.setText(str(int(self.curSessLineEdit.text()) - 1))
+        self.importDirs()
+
+
     def queueEvent(self, function):
         QTimer.singleShot(0, function)
 
@@ -1310,7 +1323,6 @@ class MainWindow(QMainWindow, WindowMixin):
            and self.zoomMode != self.MANUAL_ZOOM:
             self.adjustScale()
         super(MainWindow, self).resizeEvent(event)
-
 
     ###
     def saveButtonClicked(self):
@@ -1491,6 +1503,16 @@ class MainWindow(QMainWindow, WindowMixin):
         self.labelSelectionChanged()
 
 
+    def set_end(self):
+        if self.start_img_file == '':
+            self.start_img_file = self.filePath
+        elif self.start_img_file == self.filePath:
+            self.start_img_file = ''
+        else:
+            self.start_img_file = self.filePath
+        print(self.start_img_file)
+
+
     def setFitWidth(self, value=True):
         if value:
             self.actions.fitWindow.setChecked(False)
@@ -1503,6 +1525,16 @@ class MainWindow(QMainWindow, WindowMixin):
             self.actions.fitWidth.setChecked(False)
         self.zoomMode = self.FIT_WINDOW if value else self.MANUAL_ZOOM
         self.adjustScale()
+
+
+    def set_start(self):
+        if self.start_img_file == '':
+            self.start_img_file = self.filePath
+        elif self.start_img_file == self.filePath:
+            self.start_img_file = ''
+        else:
+            self.start_img_file = self.filePath
+        print(self.start_img_file)
 
 
     def setZoom(self, value):
@@ -1686,9 +1718,7 @@ def get_main_app(argv=[]):
         #                      os.path.dirname(sys.argv[0]),
         #                      'data', 'predefined_classes.txt'))
 
-        # win = MainWindow(login.logged_id, defaultPrefdefClassFile='/home/dokyoung/Downloads/vanno/env/jester/predefined_classes.txt')
-        win = MainWindow(login.logged_id, defaultPrefdefClassFile='../vanno_data/jester_env/predefined_classes.txt')
-        # win.logged_id=login.logged_id
+        win = MainWindow(login.logged_id, defaultPrefdefClassFile=os.path.join(env_path, 'predefined_classes.txt'))
         win.show()
 
 
