@@ -1,7 +1,56 @@
-﻿import os, json
+import os, json
 
-ids = []
 dataset = 'jester'
+label_path = '../vanno_data/' + dataset + '_label/'
+
+labels = []
+labels_selected = []
+label_no = 0
+with open(label_path + 'jester-v1-labels.csv', 'r') as f:
+    lines = f.readlines()
+    for line in lines:
+        line = line.replace('\n', '')
+        labels.append(line)
+        label_no += 1
+# print(labels)
+
+for i in range(label_no):
+    if i in [0, 1, 2, 3, 20, 21, 22, 24]:
+        labels_selected.append(labels[i])
+# print(labels_selected)
+
+dirs_train_selected = []
+with open(label_path + 'jester-v1-train.csv', 'r') as f:
+    lines = f.readlines()
+    for line in lines:
+        line = line.replace('\n', '')
+        if line.split(';')[1] in labels_selected:
+            dirs_train_selected.append(int(line.split(';')[0]))
+# dirs_train_selected.sort()
+# print(dirs_train_selected)
+
+dirs_val_selected = []
+with open(label_path + 'jester-v1-validation.csv', 'r') as f:
+    lines = f.readlines()
+    for line in lines:
+        line = line.replace('\n', '')
+        if line.split(';')[1] in labels_selected:
+            dirs_val_selected.append(int(line.split(';')[0]))
+# dirs_val_selected.sort()
+# print(dirs_val_selected)
+
+dirs_selected = dirs_train_selected + dirs_val_selected
+dirs_selected.sort()
+
+dirs_selected_str = []
+for i in dirs_selected:
+    dirs_selected_str.append(str(i))
+# print(dirs_selected_str)
+
+
+
+###
+ids = []
 env_path = '../vanno_results/' + dataset + '_env'
 
 with open('./env/ids.txt', 'r') as f:
@@ -9,11 +58,7 @@ with open('./env/ids.txt', 'r') as f:
     for line in lines:
         ids.append(line.replace('\n', ''))
 
-data_path = '../vanno_data/' + dataset
-dirs = os.listdir(data_path)
-dirs_int = [int(d) for d in dirs]
-dirs_int.sort()
-dirs = [str(i) for i in dirs_int]
+dirs = dirs_selected_str
 
 n_dir_per_sess = 5000
 n_dir = len(dirs)                                                   #148092
@@ -51,4 +96,4 @@ for sess in range(n_sess):
 
 if not os.path.exists(env_path):
     os.makedirs(env_path)
-json.dump(dir_dict_all, open(os.path.join(env_path, 'job_assign_all.json'), 'w'), indent=2)
+json.dump(dir_dict_all, open(os.path.join(env_path, 'job_assign.json'), 'w'), indent=2)
