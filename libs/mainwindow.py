@@ -1019,13 +1019,16 @@ class MainWindow(QMainWindow, WindowMixin):
                 xmlPath_old = os.path.join(self.defaultSaveDir_folder, basename_old)
 
                 if bsuccess is False:
-                        self.anno_label.setText('XML: ')
-                        self.diffcButton.setChecked(False)
+                    self.anno_label.setText('XML: ')
+                    self.diffcButton.setChecked(False)
 
+                    if not self.canvas.verified:
                         bsuccess = self.loadPascalXMLByFilename(xmlPath_old, False)
                         self.diffcButton.setChecked(False)
                         if bsuccess is True:
                             self.actions.save.setEnabled(True)
+                    else:
+                        self.canvas.verified = False
                 else:
                     self.anno_label.setText('XML: ' + xmlPath)
                     # self.anno_label.setStyleSheet('color: red')
@@ -1076,6 +1079,8 @@ class MainWindow(QMainWindow, WindowMixin):
         tVocParseReader = PascalVocReader(xmlPath)
         shapes = tVocParseReader.getShapes()
         self.loadLabels(shapes)
+
+        # self.canvas.verified = tVocParseReader.verified
         if current:
             self.canvas.verified = tVocParseReader.verified
         else:
