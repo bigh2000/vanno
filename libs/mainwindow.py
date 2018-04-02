@@ -825,6 +825,24 @@ class MainWindow(QMainWindow, WindowMixin):
                 self.save_label.setText('Save DIR: ' + self.imageDirPath_folder)
                 self.fileListWidget.setFocus(True)
 
+                filedir = os.path.join(results_path, foldername)
+                file = QFile(os.path.join(filedir, 'start_end.txt'))
+
+                names=["",""]
+                i=0
+                if file.open(QFile.ReadOnly | QFile.Text):
+                    while not file.atEnd():
+                        line = bytearray(file.readLine()).decode().strip()
+                        names[i]=line
+                        i+=1
+                file.close()
+
+                self.start_label.setText('Start: ' + os.path.basename(names[0]))
+                self.end_label.setText('End: ' + os.path.basename(names[1]))
+
+
+
+
 
     def discardChangesDialog(self):
         yes, no = QMessageBox.Yes, QMessageBox.No
