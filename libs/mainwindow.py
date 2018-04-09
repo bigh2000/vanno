@@ -819,6 +819,8 @@ class MainWindow(QMainWindow, WindowMixin):
         if currIndex < len(self.job_list_per_sess):
             foldername = self.job_list_per_sess[currIndex]
             if foldername:
+                # self.filePath = os.path.join(results_path, foldername)###
+                self.filePath = os.path.join(self.imageDirPath, foldername)
                 self.defaultSaveDir_folder = os.path.join(self.defaultSaveDir, foldername)
                 self.imageDirPath_folder = os.path.join(self.defaultSaveDir, foldername)
                 self.importDirImages(os.path.join(self.imageDirPath, foldername))
@@ -836,12 +838,11 @@ class MainWindow(QMainWindow, WindowMixin):
                         names[i]=line
                         i+=1
                 file.close()
-
-                self.start_label.setText('Start: ' + os.path.basename(names[0]))
-                self.end_label.setText('End: ' + os.path.basename(names[1]))
-
-
-
+                ###
+                self.start_img_file = names[0]
+                self.end_img_file = names[1]
+                self.start_label.setText('Start: ' + os.path.basename(self.start_img_file))
+                self.end_label.setText('End: ' + os.path.basename(self.end_img_file))
 
 
     def discardChangesDialog(self):
@@ -1580,12 +1581,13 @@ class MainWindow(QMainWindow, WindowMixin):
 
 
     def set_end(self):
-        if self.end_img_file == '':
-            self.end_img_file = self.filePath
-        elif self.end_img_file == self.filePath:
+        if self.start_img_file == self.filePath:
             self.end_img_file = ''
-        else:
+        elif not self.start_img_file or (self.start_img_file and int(os.path.splitext(os.path.basename(self.filePath))[0]) >= int(os.path.splitext(os.path.basename(self.start_img_file))[0])):
             self.end_img_file = self.filePath
+
+        self.start_label.setText('Start: ' + os.path.basename(self.start_img_file))
+        self.end_label.setText('End: ' + os.path.basename(self.end_img_file))
 
         if self.end_img_file != '':
             self.end_label.setText('End: ' + os.path.basename(self.end_img_file))
@@ -1617,12 +1619,13 @@ class MainWindow(QMainWindow, WindowMixin):
 
 
     def set_start(self):
-        if self.start_img_file == '':
-            self.start_img_file = self.filePath
-        elif self.start_img_file == self.filePath:
+        if self.start_img_file == self.filePath:
             self.start_img_file = ''
-        else:
+        elif not self.end_img_file or (self.end_img_file and int(os.path.splitext(os.path.basename(self.filePath))[0]) <= int(os.path.splitext(os.path.basename(self.end_img_file))[0])):
             self.start_img_file = self.filePath
+
+        self.start_label.setText('Start: ' + os.path.basename(self.start_img_file))
+        self.end_label.setText('End: ' + os.path.basename(self.end_img_file))
 
         if self.start_img_file != '':
             self.start_label.setText('Start: ' + os.path.basename(self.start_img_file))
